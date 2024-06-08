@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootNode" prefHeight="836.0" prefWidth="1513.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.plant.controller.SupplierFormController">
+    <children>
+        <Text layoutX="782.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MANAGE SUPPLIERS">
+            <font>
+                <Font name="DejaVu Sans Bold" size="24.0" />
+            </font>
+        </Text>
+        <Text layoutX="530.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SupplierId">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txtSupplierName" layoutX="996.0" layoutY="166.0" onKeyReleased="#txtSupplierNameOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <Text layoutX="1006.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SupplierName">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txtContact" layoutX="522.0" layoutY="261.0" onKeyReleased="#txtContactOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <Text layoutX="532.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <fill>
+                <LinearGradient endX="1.0" endY="1.0" startX="0.5190476190476191">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.9496644295302014">
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+        <TextField fx:id="txtAddress" layoutX="996.0" layoutY="261.0" onKeyReleased="#txtAddressOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <Text layoutX="1010.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txtProductName" layoutX="522.0" layoutY="411.0" onKeyReleased="#txtProductNameOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <Text layoutX="526.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ProductName">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txtQuantity" layoutX="522.0" layoutY="335.0" onKeyReleased="#txtQuantityOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <Text layoutX="528.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txtUnitPrice" layoutX="522.0" layoutY="498.0" onKeyReleased="#txtUnitPriceOnKeyRelaesed" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <Text layoutX="526.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UnitPrice">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txtNIC" layoutX="996.0" layoutY="373.0" onKeyReleased="#txtNICOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <TableView fx:id="tblSupplier" layoutX="522.0" layoutY="569.0" onMouseClicked="#tblSupplierOnMouseClicked" prefHeight="214.0" prefWidth="824.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="64.0" text="Id" />
+                <TableColumn fx:id="colName" prefWidth="62.0" text="Name" />
+                <TableColumn fx:id="colAddress" prefWidth="83.0" text="Address" />
+                <TableColumn fx:id="colContact" prefWidth="89.0" text="Contact" />
+                <TableColumn fx:id="colQuantity" prefWidth="99.0" text="Quantity" />
+                <TableColumn fx:id="colUnitPrice" prefWidth="81.0" text="UnitPrice" />
+                <TableColumn fx:id="colProductName" prefWidth="149.0" text="ProductName" />
+                <TableColumn fx:id="colDate" prefWidth="89.0" text="Date" />
+                <TableColumn fx:id="colNIC" prefWidth="142.0" text="NIC" />
+            </columns>
+        </TableView>
+        <ImageView fitHeight="122.0" fitWidth="152.0" layoutX="1354.0" layoutY="14.0">
+            <image>
+                <Image url="@../asserts/logo.jpg" />
+            </image>
+        </ImageView>
+        <TextField fx:id="txtSupplierId" layoutX="522.0" layoutY="166.0" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <Text layoutX="1010.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txtDate" layoutX="1000.0" layoutY="498.0" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
+        <Text layoutX="1016.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <JFXButton fx:id="btnShowDetails" layoutX="1384.0" layoutY="771.0" onAction="#btnShowDetailsOnAction" text="show details" />
+        <JFXButton fx:id="btnSAVE" layoutX="1374.0" layoutY="202.0" onAction="#btnSAVEOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="SAVE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <styleClass>
+                <String fx:value="logout" />
+                <String fx:value="boader" />
+            </styleClass>
+        </JFXButton>
+        <JFXButton fx:id="btnBACK" layoutX="1375.0" layoutY="464.0" onAction="#btnBACKOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="BACK">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <styleClass>
+                <String fx:value="logout" />
+                <String fx:value="boader" />
+            </styleClass>
+        </JFXButton>
+        <JFXButton fx:id="btnCLEAR" layoutX="1374.0" layoutY="256.0" onAction="#btnCLEAROnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="CLEAR">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <styleClass>
+                <String fx:value="logout" />
+                <String fx:value="boader" />
+            </styleClass>
+        </JFXButton>
+        <JFXButton fx:id="btnSEARCH" layoutX="1373.0" layoutY="413.0" onAction="#btnSEARCHOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="SEARCH">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <styleClass>
+                <String fx:value="logout" />
+                <String fx:value="boader" />
+            </styleClass>
+        </JFXButton>
+        <JFXButton fx:id="btnDELETE" layoutX="1374.0" layoutY="309.0" onAction="#btnDELETEOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="DELETE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <styleClass>
+                <String fx:value="logout" />
+                <String fx:value="boader" />
+            </styleClass>
+        </JFXButton>
+        <JFXButton fx:id="btnUPDATE" layoutX="1374.0" layoutY="361.0" onAction="#btnUPDATEOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="UPDATE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <styleClass>
+                <String fx:value="logout" />
+                <String fx:value="boader" />
+            </styleClass>
+        </JFXButton>
+        <ImageView fitHeight="836.0" fitWidth="519.0">
+            <image>
+                <Image url="@../asserts/employee.jpg" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
