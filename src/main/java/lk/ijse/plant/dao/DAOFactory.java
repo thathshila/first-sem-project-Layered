@@ -1,7 +1,6 @@
 package lk.ijse.plant.dao;
 
-import lk.ijse.plant.dao.Custom.Impl.CustomerDAOImpl;
-import lk.ijse.plant.dao.Custom.Impl.SupplierDAOImpl;
+import lk.ijse.plant.dao.Custom.Impl.*;
 
 
 public class DAOFactory {
@@ -15,7 +14,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes{
-        CUSTOMER,SUPPLIER
+        CUSTOMER,SUPPLIER,EMPLOYEE,ITEM,USER
     }
 
     public SuperDAO getDAO(DAOTypes types){
@@ -24,6 +23,12 @@ public class DAOFactory {
                 return new CustomerDAOImpl();
             case SUPPLIER:
                 return new SupplierDAOImpl();
+            case EMPLOYEE:
+                return new EmployeeDAOImpl();
+            case ITEM:
+                return new ItemDAOImpl();
+            case USER:
+                return new UserDAOImpl();
             default:
                 return null;
         }

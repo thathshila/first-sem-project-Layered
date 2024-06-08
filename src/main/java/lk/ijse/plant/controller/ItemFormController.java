@@ -1,4 +1,242 @@
 package lk.ijse.plant.controller;
 
-public class ItemFormController {
-}
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import lk.ijse.plant.bo.BOFactory;
+import lk.ijse.plant.bo.Custom.ItemBO;
+import lk.ijse.plant.dao.Custom.ItemDAO;
+import lk.ijse.plant.dao.DAOFactory;
+import lk.ijse.plant.dto.ItemDTO;
+import lk.ijse.plant.dto.tm.ItemTM;
+import lk.ijse.plant.util.Regex;
+import lombok.SneakyThrows;
+
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.function.Predicate;
+
+public class ItemFormController implements Initializable {
+    public AnchorPane rootNode;
+    @FXML
+    private Button btnBACK;
+
+    @FXML
+    private Button btnCLEAR;
+
+    @FXML
+    private Button btnDELETE;
+
+    @FXML
+    private Button btnSAVE;
+
+    @FXML
+    private Button btnSEARCH;
+
+    @FXML
+    private Button btnUPDATE;
+
+    @FXML
+    private TableColumn<?, ?> colDate;
+
+    @FXML
+    private TableColumn<?, ?> colDescription;
+
+    @FXML
+    private TableColumn<?, ?> colId;
+
+    @FXML
+    private TableColumn<?, ?> colName;
+
+    @FXML
+    private TableColumn<?, ?> colPrice;
+
+    @FXML
+    private TableColumn<?, ?> colQuantity;
+
+    @FXML
+    private TableView<ItemTM> tblItem;
+
+    @FXML
+    private TextField txtDate;
+
+    @FXML
+    private TextField txtDescription;
+
+    @FXML
+    private TextField txtItemId;
+
+    @FXML
+    private TextField txtItemName;
+
+    @FXML
+    private TextField txtPrice;
+
+    @FXML
+    private TextField txtQuantity;
+
+    ObservableList<ItemTM> observableList;
+
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
+    ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+
+    @SneakyThrows
+    @Override
+    public void initialize(java.net.URL url, ResourceBundle resourceBundle) {
+        setCellValueFactory();
+        getAll();
+        generateNextItemID();
+    }
+
+    private void getAll() throws SQLException, ClassNotFoundException {
+        observableList = FXCollections.observableArrayList();
+        List<ItemDTO> item = itemBO.getAllItem();
+
+        for (ItemDTO i : item) {
+            observableList.add(new ItemTM(i.getItem_id(),i.getItem_name(),i.getQuantity(),i.getPrice(),i.getDescription(),i.getDate()));
+        }
+        tblItem.setItems(observableList);
+    }
+
+    private void setCellValueFactory() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("Item_id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colQuantity.setCellValueFactory(new PropertyValueFactory<>("Qty"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+    }
+    @FXML
+    void btnCLEAROnAction(ActionEvent event) {
+        clearFields();
+    }
+
+    private void clearFields() {
+        txtItemId.setText("");
+        txtQuantity.setText("");
+        txtItemName.setText("");
+        txtPrice.setText("");
+        txtDescription.setText("");
+        txtDate.setText("");
+    }
+
+    public void mouseClickOnAction(MouseEvent mouseEvent) {
+        Integer index = tblItem.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        txtItemId.setText(colId.getCellData(index).toString());
+        txtItemName.setText(colName.getCellData(index).toString());
+        txtDate.setText(colDate.getCellData(index).toString());
+        txtDescription.setText(colDescription.getCellData(index).toString());
+        txtPrice.setText(colPrice.getCellData(index).toString());
+        txtQuantity.setText(colQuantity.getCellData(index).toString());
+    }
+
+
+    public void txtItemNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.NAME, txtItemName);
+    }
+
+    public void txtQuantityOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.QUANTITY, txtQuantity);
+    }
+
+    public void txtPriceOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.PRICE, txtPrice);
+    }
+
+    public void txtDateOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.DATE, txtDate);
+    }
+
+    public boolean isValidated() {
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.NAME, txtItemName)) return false;
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.DATE, txtDate)) return false;
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.PRICE, txtPrice)) return false;
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.QUANTITY, txtQuantity)) return false;
+
+        return true;
+    }
+
+    public void btnUPDATEOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+     /*   if (!isValidated()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }*/
+        String id = txtItemId.getText();
+        String name = txtItemName.getText();
+        int quantity = Integer.parseInt(txtQuantity.getText());
+        double price = Double.parseDouble(txtPrice.getText());
+        String description = txtDescription.getText();
+        Date date = Date.valueOf(txtDate.getText());
+
+        if(itemBO.updateItem(new ItemDTO(id,name,quantity,price,description,date))){
+            new Alert(Alert.AlertType.CONFIRMATION, "Item Updated !!").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "SQL Error !!").show();
+        }
+        clearFields();
+        getAll();
+        generateNextItemID();
+    }
+
+    public void btnSEARCHOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnBACKOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnSAVEOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+      /*  if (!isValidated()){
+            new Alert(Alert.AlertType.ERROR,"Please Check TextFields !").show();
+            return;
+        }*/
+        String id = txtItemId.getText();
+        String name = txtItemName.getText();
+        int quantity = Integer.parseInt(txtQuantity.getText());
+        double price = Double.parseDouble(txtPrice.getText());
+        String description = txtDescription.getText();
+        Date date = Date.valueOf(txtDate.getText());
+
+        if (itemBO.addItem(new ItemDTO(id,name,quantity,price,description,date))){
+            new Alert(Alert.AlertType.CONFIRMATION,"Item Added !!").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"SQL Error !!").show();
+        }
+        clearFields();
+        getAll();
+        generateNextItemID();
+    }
+
+    public void btnDELETEOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+        if (result.orElse(no) == yes) {
+            if (!itemBO.deleteItem(txtItemId.getText())) {
+                new Alert(Alert.AlertType.ERROR, "SQL Error !!").show();
+            }
+            getAll();
+            generateNextItemID();
+        }
+    }
+
+        private void generateNextItemID() throws ClassNotFoundException, SQLException {
+            String nextId = itemBO.generateNewItemID();
+            txtItemId.setText(nextId);
+        }
+    }

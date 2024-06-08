@@ -29,4 +29,17 @@ public class SupplierBOImpl  implements SupplierBO {
     }
 
     @Override
+    public boolean updateSupplier(SupplierDTO dto) throws SQLException,ClassNotFoundException{
+        return supplierDAO.update(new Supplier(dto.getSupplier_id(),dto.getSupplier_name(),dto.getAddress(),dto.getContact(),dto.getQuantity(),dto.getPrice(),dto.getProduct(),dto.getDate(),dto.getNIC()));
+    }
+
+    @Override
+    public  boolean deleteSupplier(String id) throws SQLException,ClassNotFoundException{
+        return supplierDAO.delete(id);
+    }
+
+    @Override
+    public String generateNewSupplierID() throws SQLException,ClassNotFoundException{
+        return supplierDAO.generateNewID();
+    }
 }

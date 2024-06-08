@@ -3,12 +3,9 @@ package lk.ijse.plant.dto;
 import lombok.*;
 
 import java.sql.Date;
-@NoArgsConstructor
-@Data
 @AllArgsConstructor
-@Setter
-@Getter
-@ToString
+@Data
+@NoArgsConstructor
 public class SupplierDTO {
     private String Supplier_id;
     private String Supplier_name;

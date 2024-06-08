@@ -3,13 +3,10 @@ package lk.ijse.plant.dto.tm;
 import lombok.*;
 
 import java.sql.Date;
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Getter
-@Setter
 @Data
-public class supplierTM {
+@NoArgsConstructor
+public class SupplierTM {
     private String Supplier_id;
     private String Supplier_name;
     private String Address;
