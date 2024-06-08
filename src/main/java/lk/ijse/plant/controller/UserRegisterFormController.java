@@ -12,6 +12,8 @@ import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.UserBO;
 import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
+import lk.ijse.plant.dto.UserDTO;
+
 
 import java.net.URL;
 import java.sql.Date;
@@ -82,7 +84,7 @@ public class UserRegisterFormController implements Initializable {
     public void btnBackOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnRegisterNowOnAction(ActionEvent actionEvent) throws ClassNotFoundException {
+    public void btnRegisterNowOnAction(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
       /*  if (!isValidated()){
             new Alert(Alert.AlertType.WARNING,"Please Check TextFields !").show();
             return;

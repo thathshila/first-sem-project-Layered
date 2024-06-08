@@ -5,10 +5,11 @@ import lk.ijse.plant.dao.SQLUtil;
 import lk.ijse.plant.dto.SupplierDTO;
 import lk.ijse.plant.entity.Supplier;
 
-import java.awt.*;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SupplierDAOImpl implements SupplierDAO {
 
