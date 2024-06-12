@@ -6,12 +6,15 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.ItemBO;
 import lk.ijse.plant.dao.Custom.ItemDAO;
@@ -21,8 +24,10 @@ import lk.ijse.plant.dto.tm.ItemTM;
 import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -98,6 +103,12 @@ public class ItemFormController implements Initializable {
         setCellValueFactory();
         getAll();
         generateNextItemID();
+        setDate();
+    }
+
+    private void setDate() {
+        LocalDate now = LocalDate.now();
+        txtDate.setText(String.valueOf(now));
     }
 
     private void getAll() throws SQLException, ClassNotFoundException {
@@ -112,8 +123,8 @@ public class ItemFormController implements Initializable {
 
     private void setCellValueFactory() {
         colId.setCellValueFactory(new PropertyValueFactory<>("Item_id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colQuantity.setCellValueFactory(new PropertyValueFactory<>("Qty"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("Item_name"));
+        colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -172,8 +183,8 @@ public class ItemFormController implements Initializable {
     }
 
     public void btnUPDATEOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-     /*   if (!isValidated()){
-            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+     /*  if (!isValidated()){
+            new Alert(Alert.AlertType.ERROR,"Please Check TextFields !").show();
             return;
         }*/
         String id = txtItemId.getText();
@@ -196,7 +207,13 @@ public class ItemFormController implements Initializable {
     public void btnSEARCHOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnBACKOnAction(ActionEvent actionEvent) {
+    public void btnBACKOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+        Stage stage = (Stage) rootNode.getScene().getWindow();
+
+        stage.setScene(new Scene(anchorPane));
+        stage.setTitle("Main Form");
+        stage.centerOnScreen();
     }
 
     public void btnSAVEOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {

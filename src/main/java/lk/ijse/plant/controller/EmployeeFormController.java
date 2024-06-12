@@ -129,6 +129,7 @@ public class EmployeeFormController implements Initializable {
         choiceAttendance.setItems(attendanceType);
     }
 
+
     private void setDate() {
         LocalDate now = LocalDate.now();
         txtDate.setText(String.valueOf(now));
@@ -198,7 +199,7 @@ public class EmployeeFormController implements Initializable {
         colContact.setCellValueFactory(new PropertyValueFactory<>("Contact"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
         colSalary.setCellValueFactory(new PropertyValueFactory<>("Salary"));
-        colWorkHours.setCellValueFactory(new PropertyValueFactory<>("WorkingHours"));
+        colWorkHours.setCellValueFactory(new PropertyValueFactory<>("Working_hours"));
         colAttendance.setCellValueFactory(new PropertyValueFactory<>("Attendance"));
         colPosition.setCellValueFactory(new PropertyValueFactory<>("Position"));
     }

@@ -7,28 +7,39 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.CustomerBO;
 import lk.ijse.plant.dao.Custom.CustomerDAO;
 import lk.ijse.plant.dao.DAOFactory;
+import lk.ijse.plant.db.DBConnection;
 import lk.ijse.plant.dto.CustomerDTO;
 import lk.ijse.plant.dto.tm.CustomerTM;
+import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class CustomerFormController implements Initializable {
+
+    public AnchorPane rootNode;
 
     @FXML
     private JFXButton btnBACK;
@@ -127,14 +138,28 @@ public class CustomerFormController implements Initializable {
     }
 
     @FXML
-    void btnBACKOnAction(ActionEvent event) {
+    void btnBACKOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+        Stage stage = (Stage) rootNode.getScene().getWindow();
 
+        stage.setScene(new Scene(anchorPane));
+        stage.setTitle("Main Form");
+        stage.centerOnScreen();
     }
 
     @FXML
-    void btnBillOnAction(ActionEvent event) {
+    void btnBillOnAction(ActionEvent event) throws JRException, SQLException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/customer.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
+        Map<String,Object> data = new HashMap<>();
+        // data.put("CustomerID",txtCustomerId.getText());
+
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(jasperReport, data, DBConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint,false);
     }
+
 
     @FXML
     void btnCLEAROnAction(ActionEvent event) {
@@ -225,15 +250,15 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnSEARCHOnAction(ActionEvent event) {
-
     }
+
 
     @FXML
     void btnUPDATEOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-   /* if(!isValidated()){
+   if(!isValidated()){
         new Alert(Alert.AlertType.ERROR,"Please Check TextFields!").show();
         return;
-    }*/
+    }
       //  String user = customerDAO.searchByName(lblUserName.getText());
      //   lblUserId.setText(user);
 
@@ -269,58 +294,49 @@ public class CustomerFormController implements Initializable {
 
   //  lblError.setVisible(false);
     }
-
-    @FXML
-    void txtAddressOnAction(ActionEvent event) {
-
+    public void txtCustomerNameOnAction(ActionEvent actionEvent) {
+        txtContact.requestFocus();
     }
 
-    @FXML
-    void txtAddressOnKeyReleased(KeyEvent event) {
-
+    public void txtContactOnAction(ActionEvent actionEvent){
+        txtNICNumber.requestFocus();
     }
 
-    @FXML
-    void txtContactOnAction(ActionEvent event) {
-
+    public  void txtNICNumberOnAction(ActionEvent actionEvent){
+        txtAddress.requestFocus();
     }
 
-    @FXML
-    void txtContactOnKeyReleased(KeyEvent event) {
+    public void txtAddressOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        btnSAVEOnAction(actionEvent);
 
     }
-
-    @FXML
-    void txtCustomerNameOnAction(ActionEvent event) {
-
+    public void txtCustomerNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.NAME, txtCustomerName);
     }
 
-    @FXML
-    void txtCustomerNameOnKeyReleased(KeyEvent event) {
-
+    public void txtAddressOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.ADDRESS, txtAddress);
     }
 
-    @FXML
-    void txtDateOnKeyReleased(KeyEvent event) {
-
+    public void txtDateOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.DATE, txtDate);
     }
 
-    @FXML
-    void txtNICNumberOnAction(ActionEvent event) {
-
+    public void txtContactOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.CONTACT, txtContact);
     }
 
-    @FXML
-    void txtNICNumberOnKeyReleased(KeyEvent event) {
-
+    public void txtNICNumberOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.plant.util.TextField.NIC, txtNICNumber);
     }
-   /* public boolean isValidated() {
-        if (!Regex.setTextColor(lk.ijse.util.TextField.NAME, txtCustomerName)) return false;
-        if (!Regex.setTextColor(lk.ijse.util.TextField.ADDRESS, txtAddress)) return false;
-        if (!Regex.setTextColor(lk.ijse.util.TextField.DATE, txtDate)) return false;
-        if (!Regex.setTextColor(lk.ijse.util.TextField.CONTACT, txtContact)) return false;
-        if (!Regex.setTextColor(lk.ijse.util.TextField.NIC, txtNICNumber)) return false;
+
+    public boolean isValidated() {
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.NAME, txtCustomerName)) return false;
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.ADDRESS, txtAddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.DATE, txtDate)) return false;
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.CONTACT, txtContact)) return false;
+        if (!Regex.setTextColor(lk.ijse.plant.util.TextField.NIC, txtNICNumber)) return false;
 
         return true;
-    }*/
+    }
 }

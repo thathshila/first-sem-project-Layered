@@ -59,4 +59,9 @@ public class UserDAOImpl implements UserDAO {
             return "U001";
         }
     }
+
+   /*  @Override
+    public String getId() throws SQLException,ClassNotFoundException{
+        return SQLUtil.execute("SELECT User_id FROM User");
+    }*/
 }
