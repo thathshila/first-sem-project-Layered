@@ -54,7 +54,7 @@ public class OrderDAOImpl implements OrderDAO {
         return null;
     }
 
-    @Override
+   /* @Override
     public boolean makeOrder(PlaceOrder placeOrder) {
         try {
             boolean isOrderSaved = add(placeOrder.getOrder());
@@ -99,5 +99,5 @@ public class OrderDAOImpl implements OrderDAO {
             connection.setAutoCommit(true);
         }
         return false;
-    }
+    }*/
     }

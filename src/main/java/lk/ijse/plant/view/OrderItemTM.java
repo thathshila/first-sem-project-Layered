@@ -16,6 +16,5 @@ public class OrderItemTM {
     private double Total;
     private JFXButton btnRemove;
 
-    public OrderItemTM(String itemId, String itemName, int quantity, double price, double total, JFXButton btnRemove) {
-    }
+
 }

@@ -62,7 +62,53 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
 
     @Override
     public boolean placeOrder(PlaceOrder placeOrder) throws SQLException, ClassNotFoundException {
-        return orderDAO.makeOrder(placeOrder);
+       // return orderDAO.makeOrder(placeOrder);
+        Connection connection = DBConnection.getInstance().getConnection();
+        connection.setAutoCommit(false);
+
+        try {
+            boolean isOrderSaved = orderDAO.add(placeOrder.getOrder());
+            System.out.println("isOrderSaved = " + isOrderSaved);
+            if (isOrderSaved) {
+
+                boolean isQtyUpdated = false;
+
+                for (OrderItem entity : placeOrder.getOdList()) {
+                    isQtyUpdated = itemDAO.UpdateQty(entity);
+
+                }
+                System.out.println("isQtyUpdated = " + isQtyUpdated);
+
+
+                if (isQtyUpdated) {
+
+                    boolean isOrderDetailSaved = false;
+
+                    for (OrderItem entity : placeOrder.getOdList()) {
+                        isOrderDetailSaved = orderItemDAO.SaveItem(entity);
+                    }
+                    System.out.println("isOrderDetailSaved = " + isOrderDetailSaved);
+
+                    if (isOrderDetailSaved) {
+                        connection.commit();
+                        return true;
+                    } else {
+                        connection.rollback();
+                    }
+                } else {
+                    connection.rollback();
+                }
+            } else {
+                connection.rollback();
+            }
+
+        } catch (Exception e) {
+            connection.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            connection.setAutoCommit(true);
+        }
+        return false;
     }
 
 

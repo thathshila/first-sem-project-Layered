@@ -25,11 +25,6 @@ public class MainFormController {
 
     public AnchorPane rootNode;
 
-    @FXML
-    private AnchorPane anpmain2;
-
-    @FXML
-    private AnchorPane anpmain3;
 
     @FXML
     private Button btnCustomer;

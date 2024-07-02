@@ -6,12 +6,15 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.SupplierBO;
 import lk.ijse.plant.dto.SupplierDTO;
@@ -19,6 +22,7 @@ import lk.ijse.plant.view.SupplierTM;
 import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -329,7 +333,14 @@ public class SupplierFormController implements Initializable {
     @FXML
     void btnSEARCHOnAction(ActionEvent event){}
     @FXML
-    void btnBACKOnAction(ActionEvent event){}
+    void btnBACKOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+        Stage stage = (Stage) rootNode.getScene().getWindow();
+
+        stage.setScene(new Scene(anchorPane));
+        stage.setTitle("Main Form");
+        stage.centerOnScreen();
+    }
 
     @FXML
     void btnShowDetailsOnAction(ActionEvent event){}
