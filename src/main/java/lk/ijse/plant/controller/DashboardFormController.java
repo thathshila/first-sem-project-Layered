@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 public class DashboardFormController implements Initializable {
 
         public AnchorPane rootNode;
-        public AnchorPane rootNode1;
         @FXML
         public Label lblCustomerCount;
 

@@ -23,6 +23,7 @@ public class CustomerBOImpl implements CustomerBO {
         return arrayList;
     }
 
+
     @Override
     public boolean addCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException{
         return customerDAO.add(new Customer(dto.getCustomer_id(), dto.getCustomer_name(), dto.getContact(), dto.getAddress(), dto.getNic(), dto.getDate()));
@@ -42,4 +43,5 @@ public class CustomerBOImpl implements CustomerBO {
     public String generateNewCustomerID() throws SQLException, ClassNotFoundException{
         return customerDAO.generateNewID();
     }
+
 }

@@ -15,4 +15,5 @@ public interface EmployeeBO extends SuperBO {
     public boolean deleteEmployee(String id) throws SQLException, ClassNotFoundException;
 
     public String generateNewEmployeeID() throws SQLException, ClassNotFoundException;
+
 }

@@ -1,5 +1,6 @@
 package lk.ijse.plant.dao;
 
+import lk.ijse.plant.bo.Custom.Impl.PlaceOrderBOImpl;
 import lk.ijse.plant.dao.Custom.Impl.*;
 
 
@@ -14,7 +15,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes{
-        CUSTOMER,SUPPLIER,EMPLOYEE,ITEM,USER,PLACEORDER
+        CUSTOMER,SUPPLIER,EMPLOYEE,ITEM,USER,PLACE_ORDER,QUERY_DAO,ORDER_ITEM
     }
 
     public SuperDAO getDAO(DAOTypes types){
@@ -29,6 +30,10 @@ public class DAOFactory {
                 return new ItemDAOImpl();
             case USER:
                 return new UserDAOImpl();
+            case QUERY_DAO:
+                return new QueryDAOImpl();
+            case ORDER_ITEM:
+                return new OrderDAOImpl();
             default:
                 return null;
         }

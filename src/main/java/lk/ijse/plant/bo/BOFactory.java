@@ -2,6 +2,7 @@ package lk.ijse.plant.bo;
 
 
 import lk.ijse.plant.bo.Custom.Impl.*;
+import lk.ijse.plant.dao.Custom.Impl.OrderDAOImpl;
 
 public class BOFactory {
 
@@ -13,7 +14,7 @@ public class BOFactory {
         return (boFactory == null) ? boFactory = new BOFactory() : boFactory;
     }
     public  enum BOTypes{
-        CUSTOMER,SUPPLIER,EMPLOYEE,ITEM,USER,PLACEORDER,ORDER,ORDERITEM
+        CUSTOMER,SUPPLIER,EMPLOYEE,ITEM,USER,PLACE_ORDER,ORDER
     }
 
     public SuperBO getBO(BOTypes types){
@@ -28,7 +29,7 @@ public class BOFactory {
                 return new ItemBOImpl();
             case USER:
                 return new UserBOImpl();
-            case PLACEORDER:
+            case PLACE_ORDER:
                 return new PlaceOrderBOImpl();
             default:
                 return null;

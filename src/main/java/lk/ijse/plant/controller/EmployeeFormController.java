@@ -3,32 +3,33 @@ package lk.ijse.plant.controller;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.EmployeeBO;
 
 import lk.ijse.plant.dto.EmployeeDTO;
-import lk.ijse.plant.dto.tm.EmployeeTM;
+import lk.ijse.plant.view.EmployeeTM;
 
 import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 public class EmployeeFormController implements Initializable {
 
@@ -303,6 +304,12 @@ public class EmployeeFormController implements Initializable {
     public void btnSEARCHOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnBACKOnAction(ActionEvent actionEvent) {
+    public void btnBACKOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+        Stage stage = (Stage) rootNode.getScene().getWindow();
+
+        stage.setScene(new Scene(anchorPane));
+        stage.setTitle("Main Form");
+        stage.centerOnScreen();
     }
 }

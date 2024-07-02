@@ -14,9 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.SupplierBO;
-import lk.ijse.plant.dto.CustomerDTO;
 import lk.ijse.plant.dto.SupplierDTO;
-import lk.ijse.plant.dto.tm.SupplierTM;
+import lk.ijse.plant.view.SupplierTM;
 import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
 

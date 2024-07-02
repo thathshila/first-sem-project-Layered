@@ -2,8 +2,6 @@ package lk.ijse.plant.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +18,7 @@ import lk.ijse.plant.bo.Custom.ItemBO;
 import lk.ijse.plant.dao.Custom.ItemDAO;
 import lk.ijse.plant.dao.DAOFactory;
 import lk.ijse.plant.dto.ItemDTO;
-import lk.ijse.plant.dto.tm.ItemTM;
+import lk.ijse.plant.view.ItemTM;
 import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
 
@@ -31,7 +29,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 public class ItemFormController implements Initializable {
     public AnchorPane rootNode;
@@ -183,10 +180,10 @@ public class ItemFormController implements Initializable {
     }
 
     public void btnUPDATEOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-     /*  if (!isValidated()){
+       if (!isValidated()){
             new Alert(Alert.AlertType.ERROR,"Please Check TextFields !").show();
             return;
-        }*/
+        }
         String id = txtItemId.getText();
         String name = txtItemName.getText();
         int quantity = Integer.parseInt(txtQuantity.getText());
@@ -256,4 +253,8 @@ public class ItemFormController implements Initializable {
             String nextId = itemBO.generateNewItemID();
             txtItemId.setText(nextId);
         }
+
+    private boolean existItem(String code) throws SQLException, ClassNotFoundException {
+        return itemBO.existItem(code);
+    }
     }

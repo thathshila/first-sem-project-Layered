@@ -22,7 +22,7 @@ import lk.ijse.plant.dao.Custom.CustomerDAO;
 import lk.ijse.plant.dao.DAOFactory;
 import lk.ijse.plant.db.DBConnection;
 import lk.ijse.plant.dto.CustomerDTO;
-import lk.ijse.plant.dto.tm.CustomerTM;
+import lk.ijse.plant.view.CustomerTM;
 import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
 import net.sf.jasperreports.engine.*;

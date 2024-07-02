@@ -60,8 +60,26 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-   /*  @Override
-    public String getId() throws SQLException,ClassNotFoundException{
-        return SQLUtil.execute("SELECT User_id FROM User");
-    }*/
+    @Override
+    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public User search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public List<String> getIds() throws SQLException {
+        List<String> List = new ArrayList<>();
+        ResultSet rst = SQLUtil.execute(
+                "SELECT User_id FROM User");
+        while (rst.next()) {
+            List.add(rst.getString(1));
+        }
+        return List;
+
+    }
+
 }

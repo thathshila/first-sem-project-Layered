@@ -41,7 +41,6 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public boolean update(Supplier entity) throws SQLException,ClassNotFoundException{
         return SQLUtil.execute("UPDATE Supplier SET Supplier_name = ?, Address = ?, Contact = ?, Quantity = ?, Price = ?, Product = ?, Date = ?, NIC = ? WHERE Supplier_id = ?",
-                entity.getSupplier_id(),
                 entity.getSupplier_name(),
                 entity.getAddress(),
                 entity.getContact(),
@@ -49,7 +48,8 @@ public class SupplierDAOImpl implements SupplierDAO {
                 entity.getPrice(),
                 entity.getProduct(),
                 entity.getDate(),
-                entity.getNIC());
+                entity.getNIC(),
+                entity.getSupplier_id());
     }
 
     @Override
@@ -79,5 +79,16 @@ public class SupplierDAOImpl implements SupplierDAO {
         } else {
             return "S001";
         }
+    }
+
+    @Override
+    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+        ResultSet rst = SQLUtil.execute("SELECT Supplier_id FROM Supplier WHERE Supplier_id=?", id);
+        return rst.next();
+    }
+
+    @Override
+    public Supplier search(String id) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

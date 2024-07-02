@@ -40,7 +40,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public boolean update(Employee entity) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("UPDATE Employee SET Employee_name = ?,Address = ?,Contact = ?,Date = ?,Salary = ?,Working_hours = ?,Attendance = ?,Position = ?,User_id = ? WHERE Employee_id = ?",
-                entity.getEmployee_id(),
                 entity.getEmployee_name(),
                 entity.getAddress(),
                 entity.getContact(),
@@ -49,7 +48,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 entity.getWorking_hours(),
                 entity.getAttendance(),
                 entity.getPosition(),
-                entity.getUser_id());
+                entity.getUser_id(),
+                entity.getEmployee_id());
     }
 
     @Override
@@ -79,6 +79,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         } else {
             return "E001";
         }
+    }
+
+    @Override
+    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+        ResultSet rst = SQLUtil.execute("SELECT Employee_id FROM Employee WHERE Employee_id=?", id);
+        return rst.next();
+    }
+
+    @Override
+    public Employee search(String id) throws SQLException, ClassNotFoundException {
+        return null;
     }
 
 

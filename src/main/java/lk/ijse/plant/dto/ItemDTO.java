@@ -16,5 +16,13 @@ public class ItemDTO {
     private double Price;
     private String Description;
     private Date Date;
+
+    public Object getQtyOnHand() {
+        return Quantity;
+    }
+
+    public void setQtyOnHand(int i) {
+        this.Quantity = i;
+    }
 }
 

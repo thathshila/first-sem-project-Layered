@@ -1,4 +1,4 @@
-package lk.ijse.plant.dto.tm;
+package lk.ijse.plant.view;
 
 import lombok.*;
 

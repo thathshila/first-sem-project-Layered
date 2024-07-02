@@ -23,7 +23,6 @@ public class CustomerDAOImpl implements CustomerDAO {
         return customers;
     }
 
-    @Override
     public boolean add(Customer entity) throws SQLException ,ClassNotFoundException{
         return SQLUtil.execute(
                 "INSERT INTO Customer(Customer_Id, Customer_Name, Contact, Address, Nic, Date) VALUES (?,?,?,?,?,?)",
@@ -76,5 +75,30 @@ public class CustomerDAOImpl implements CustomerDAO {
         }else {
             return "C001";
         }
+    }
+
+    @Override
+    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+        ResultSet rst = SQLUtil.execute("SELECT Customer_id FROM Customer WHERE Customer_id=?", id);
+        return rst.next();
+    }
+
+    @Override
+    public Customer search(String id) throws SQLException, ClassNotFoundException {
+        ResultSet rst = SQLUtil.execute("SELECT * FROM Customer WHERE Nic=?");
+        rst.next();
+        return new Customer(rst.getString("Customer_id"), rst.getString("Customer_name"), rst.getInt("Contact"),rst.getString("Address"),rst.getString("Nic"),rst.getDate("date"));
+
+    }
+
+    @Override
+    public List<String> getAllNic() throws SQLException {
+        List<String> cusNicList = new ArrayList<>();
+        ResultSet rst = SQLUtil.execute(
+                "SELECT Nic FROM Customer");
+        while (rst.next()) {
+            cusNicList.add(rst.getString(1));
+        }
+        return cusNicList;
     }
 }

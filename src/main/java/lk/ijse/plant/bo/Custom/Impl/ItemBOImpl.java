@@ -38,6 +38,11 @@ public class ItemBOImpl implements ItemBO {
     }
 
     @Override
+    public boolean existItem(String code) throws SQLException, ClassNotFoundException {
+        return itemDAO.exist(code);
+    }
+
+    @Override
     public String generateNewItemID() throws SQLException, ClassNotFoundException {
         return itemDAO.generateNewID();
     }
