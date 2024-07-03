@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class CustomerBOImpl implements CustomerBO {
-    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);//customerDAOImpl can  access
     @Override
     public List<CustomerDTO> getAllCustomer() throws SQLException, ClassNotFoundException{
         List<CustomerDTO> arrayList = new ArrayList<>();
@@ -22,7 +22,6 @@ public class CustomerBOImpl implements CustomerBO {
         }
         return arrayList;
     }
-
 
     @Override
     public boolean addCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException{

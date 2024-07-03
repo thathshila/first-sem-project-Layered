@@ -22,12 +22,10 @@ public class CustomEntity {
     private int Quantity;
     private double Price;
     private String Description;
-//    private Date Date;
+
 
     //Order
     private String Order_id;
-  //  private Date Date;
-  //  private double Price;
     private String Customer_id;
     private String User_id;
 

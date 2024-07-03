@@ -20,11 +20,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PlaceOrderBOImpl implements PlaceOrderBO {
-   OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.PLACE_ORDER);
+    OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.PLACE_ORDER);
     ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
-    OrderItemDAO orderItemDAO = (OrderItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER_ITEM);
-
+    OrderItemDAO orderItemDAO = (OrderItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER_ITEM); // Ensure this gets OrderItemDAOImpl
     CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+
 
 
     @Override
@@ -36,7 +36,7 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
     @Override
     public ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException {
         Item item =itemDAO.search(code);
-        return new ItemDTO(item.getItem_id(),item.getItem_name(),item.getQuantity(),item.getPrice(),item.getItem_name(),item.getDate()) ;
+        return new ItemDTO(item.getItem_id(),item.getItem_name(),item.getQuantity(),item.getPrice(),item.getDescription(),item.getDate()) ;
     }
 
     @Override
@@ -55,10 +55,10 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
         return null;
     }
 
-    @Override
+   /* @Override
     public String generateOrderID() throws SQLException, ClassNotFoundException {
         return orderDAO.generateNewID();
-    }
+    }*/
 
     @Override
     public boolean placeOrder(PlaceOrder placeOrder) throws SQLException, ClassNotFoundException {
@@ -123,5 +123,10 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String generateNewOrderID() throws SQLException,ClassNotFoundException{
+        return orderDAO.generateNewID();
     }
 }

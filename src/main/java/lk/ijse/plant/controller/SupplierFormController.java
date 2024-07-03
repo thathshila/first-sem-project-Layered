@@ -167,8 +167,6 @@ public class SupplierFormController implements Initializable {
                         return true;
                     } else if (supplier.getAddress().toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
-                   // } else if (supplier.getContact().toLowerCase().indexOf(searchKeyword) > -1) {
-                      //  return true;
                     } else if (supplier.getProduct().toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
                     }
@@ -244,12 +242,7 @@ public class SupplierFormController implements Initializable {
 
     @FXML
     void btnUPDATEOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-    if(!isValidated()){
-        new Alert(Alert.AlertType.ERROR,"Please Check TextFields!").show();
-        return;
-    }
-        //  String user = customerDAO.searchByName(lblUserName.getText());
-        //   lblUserId.setText(user);
+
 
         String id = txtSupplierId.getText();
         String name = txtSupplierName.getText();
@@ -263,7 +256,7 @@ public class SupplierFormController implements Initializable {
 
 
         if(supplierBO.updateSupplier(new SupplierDTO(id,name,address,contact,quantity,price,product,date,nic))){
-            new Alert(Alert.AlertType.CONFIRMATION, "Customer Updated!").show();
+            new Alert(Alert.AlertType.CONFIRMATION, "Supplier Updated!").show();
         }else {
             new Alert(Alert.AlertType.ERROR,"SQL Error").show();
         }

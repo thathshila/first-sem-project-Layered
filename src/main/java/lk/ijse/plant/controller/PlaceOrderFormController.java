@@ -140,6 +140,7 @@ public class PlaceOrderFormController {
         getUserId();
         setDate();
     }
+
     private void setCellValueFactory() {
         colItemId.setCellValueFactory(new PropertyValueFactory<>("ItemId"));
         colItemName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
@@ -190,16 +191,10 @@ public class PlaceOrderFormController {
 
 
 
-    public String generateNewOrderId(){
-        try{
-            return placeOrderBO.generateOrderID();
-        }catch (SQLException e){
-            new Alert(Alert.AlertType.ERROR,"Failed to generate a new order id").show();
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        return "OID-001";
-   }
+    private void  generateNewOrderId() throws SQLException, ClassNotFoundException {
+        String nextId = placeOrderBO.generateNewOrderID();
+        txtOrderId.setText(nextId);
+    }
     @FXML
     void btnADDOnAction(ActionEvent event) {
         String ItemId = txtItemId.getText();
@@ -246,8 +241,25 @@ public class PlaceOrderFormController {
 
         tblPlaceOrder.setItems(obList);
         calculateNetTotal();
-        txtQuantity.setText("");
 
+    }
+
+    public void clearFields(){
+        txtItemName.clear();
+        txtOrderId.clear();
+        txtQuantity.clear();
+        txtPrice.clear();
+        txtContact.clear();
+        txtPrice.clear();
+        txtAreaNetBalance.clear();
+        txtDate.clear();
+        txtNIC.clear();
+        txtQtyOnHand.clear();
+        txtCustomerName.clear();
+        txtCustomerId.clear();
+        combUserId.setValue("");
+        txtAddress.clear();
+        txtItemId.clear();
     }
     private void calculateNetTotal() {
         int netBalance = 0;
@@ -295,7 +307,7 @@ public class PlaceOrderFormController {
 
             OrderItem od = new OrderItem(
                     orderId,
-                    tm.getItem_id(),
+                    tm.getItemId(),
                     tm.getQuantity(),
                     tm.getPrice()
             );
@@ -309,7 +321,7 @@ public class PlaceOrderFormController {
                 obList.clear();
                 tblPlaceOrder.setItems(obList);
                 calculateNetTotal();
-                //getCurrentOrderId();
+
 
             }else {
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
@@ -317,7 +329,9 @@ public class PlaceOrderFormController {
         }catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+        clearFields();
     }
+
 
     @FXML
     void txtItemNameOnAction(ActionEvent event) {
@@ -339,6 +353,7 @@ public class PlaceOrderFormController {
         String nic = txtNIC.getText();
         try {
             CustomerDTO customerDTO = placeOrderBO.searchCustomer(nic);
+
             txtCustomerId.setText(customerDTO.getCustomer_id());
             txtCustomerName.setText(customerDTO.getCustomer_name());
             txtAddress.setText(customerDTO.getAddress());

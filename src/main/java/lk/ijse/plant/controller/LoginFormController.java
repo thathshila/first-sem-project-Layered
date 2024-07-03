@@ -3,6 +3,7 @@ package lk.ijse.plant.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -14,12 +15,14 @@ import lk.ijse.plant.db.DBConnection;
 import lk.ijse.plant.util.Regex;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class LoginFormController {
+public class LoginFormController implements Initializable {
     @FXML
     private Button btnLOGIN;
 
@@ -132,6 +135,12 @@ public class LoginFormController {
         if (!Regex.setTextColor(lk.ijse.plant.util.TextField.PASSWORD, txtPassword)) return false;
 
         return true;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtUsername.setText("Ashi");
+        txtPassword.setText("asha123");
     }
 }
 

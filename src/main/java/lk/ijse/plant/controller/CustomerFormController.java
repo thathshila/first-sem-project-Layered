@@ -102,8 +102,7 @@ public class CustomerFormController implements Initializable {
     private TextField txtNICNumber;
 
     ObservableList<CustomerTM> observableList;
-    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
-    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);//CustomerBOImpl can access
 
     @Override
     @SneakyThrows
@@ -250,6 +249,7 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnSEARCHOnAction(ActionEvent event) {
+
     }
 
 
@@ -259,8 +259,7 @@ public class CustomerFormController implements Initializable {
         new Alert(Alert.AlertType.ERROR,"Please Check TextFields!").show();
         return;
     }
-      //  String user = customerDAO.searchByName(lblUserName.getText());
-     //   lblUserId.setText(user);
+
 
         String id = txtCustomerId.getText();
         String name = txtCustomerName.getText();

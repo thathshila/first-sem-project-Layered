@@ -81,9 +81,19 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public Item search(String id) throws SQLException, ClassNotFoundException {
-        ResultSet rst = SQLUtil.execute("SELECT * FROM Items WHERE Item_name = ?");
-        rst.next();
-        return new Item(rst.getString("Item_id"), rst.getString("Item_name"), rst.getInt("Quantity"), rst.getDouble("Price"), rst.getString("Description"), rst.getDate("Date"));
+        ResultSet rst = SQLUtil.execute("SELECT * FROM Items WHERE Item_name = ?", id);
+        if (rst.next()) {
+            return new Item(
+                    rst.getString("Item_id"),
+                    rst.getString("Item_name"),
+                    rst.getInt("Quantity"),
+                    rst.getDouble("Price"),
+                    rst.getString("Description"),
+                    rst.getDate("Date")
+            );
+        } else {
+            return null;
+        }
     }
 
 
@@ -98,8 +108,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public List<String> getItemName() throws SQLException {
         List<String> itemName = new ArrayList<>();
-        ResultSet rst = SQLUtil.execute(
-                "SELECT Item_id from Items");
+        ResultSet rst = SQLUtil.execute("SELECT Item_name from Items");
         while (rst.next()) {
             itemName.add(rst.getString(1));
         }

@@ -14,11 +14,4 @@ public class OrderItemDTO implements Serializable {
     private int Quantity;
     private double Price;
 
-    public String getItemCode() {
-        return Order_id;
-    }
-
-    public int getQty() {
-        return Quantity;
-    }
 }

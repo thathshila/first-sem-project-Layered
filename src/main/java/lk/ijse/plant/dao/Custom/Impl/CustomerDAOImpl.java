@@ -85,11 +85,21 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer search(String id) throws SQLException, ClassNotFoundException {
-        ResultSet rst = SQLUtil.execute("SELECT * FROM Customer WHERE Nic=?");
-        rst.next();
-        return new Customer(rst.getString("Customer_id"), rst.getString("Customer_name"), rst.getInt("Contact"),rst.getString("Address"),rst.getString("Nic"),rst.getDate("date"));
-
+        ResultSet rst = SQLUtil.execute("SELECT * FROM Customer WHERE Nic=?", id);
+        if (rst.next()) {
+            return new Customer(
+                    rst.getString("Customer_id"),
+                    rst.getString("Customer_name"),
+                    rst.getInt("Contact"),
+                    rst.getString("Address"),
+                    rst.getString("Nic"),
+                    rst.getDate("date")
+            );
+        } else {
+            return null;
+        }
     }
+
 
     @Override
     public List<String> getAllNic() throws SQLException {

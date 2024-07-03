@@ -7,6 +7,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface CustomerDAO extends crudDAO<Customer> {
-
     List<String> getAllNic() throws SQLException;
 }

@@ -3,6 +3,8 @@ package lk.ijse.plant.controller;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.EmployeeBO;
 
 import lk.ijse.plant.dto.EmployeeDTO;
+import lk.ijse.plant.view.CustomerTM;
 import lk.ijse.plant.view.EmployeeTM;
 
 import lk.ijse.plant.util.Regex;
@@ -30,6 +33,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class EmployeeFormController implements Initializable {
 
@@ -125,11 +129,47 @@ public class EmployeeFormController implements Initializable {
         getAll();
         generateNextEmployeeID();
         setDate();
+        searchFilter();
 
         ObservableList<String> attendanceType = FXCollections.observableArrayList("Present", "Absent");
         choiceAttendance.setItems(attendanceType);
     }
 
+    private void searchFilter() {
+        FilteredList<EmployeeTM> filterData = new FilteredList<>(observableList, e -> true);
+        txtContact.setOnKeyPressed(e -> {
+            txtContact.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+                filterData.setPredicate((Predicate<? super EmployeeTM>) employee -> {
+                    if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                        return true;
+                    }
+                    String searchKeyword = newValue.toLowerCase();
+                    if (employee.getEmployee_id().toLowerCase().indexOf(searchKeyword) > -1){
+                        return true;
+                    } else if (employee.getEmployee_name().toLowerCase().indexOf(searchKeyword) > -1) {
+                        return true;
+                    } else if (employee.getAddress().toLowerCase().indexOf(searchKeyword) > -1) {
+                        return true;
+                    }else if(employee.getAttendance().toLowerCase().indexOf(searchKeyword) > -1) {
+                        return true;
+                    }else if (employee.getSalary().toString().indexOf(searchKeyword) > -1) {
+                        return true;
+                    }else if (employee.getPosition().toLowerCase().indexOf(searchKeyword) > -1){
+                        return true;
+                    }else if (employee.getWorking_hours().toLowerCase().indexOf(searchKeyword) > -1){
+                        return true;
+                    }else if(employee.getUser_id().toLowerCase().indexOf(searchKeyword) > -1){
+                        return true;
+                    }
+
+                    return false;
+                });
+            }));
+            SortedList<EmployeeTM> buyer = new SortedList<>(filterData);
+            buyer.comparatorProperty().bind(tblEmployee.comparatorProperty());
+            tblEmployee.setItems(buyer);
+        });
+    }
 
     private void setDate() {
         LocalDate now = LocalDate.now();
@@ -246,10 +286,12 @@ public class EmployeeFormController implements Initializable {
         Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
 
         if(result.orElse(no) == yes){
-            if(employeeBO.deleteEmployee(txtEmployeeId.getText())){
+            if(!employeeBO.deleteEmployee(txtEmployeeId.getText())){
                 new Alert(Alert.AlertType.ERROR, "SQL Error!!").show();
             }
             clearFields();
+            getAll();
+            generateNextEmployeeID();
         }
     }
     public void tblEmployeeOnMouseClicked(MouseEvent mouseEvent) {

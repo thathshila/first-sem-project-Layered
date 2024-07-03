@@ -15,7 +15,9 @@ public interface PlaceOrderBO extends SuperBO {
     public boolean existItem(String code) throws SQLException, ClassNotFoundException ;
     public boolean existCustomer(String id) throws SQLException, ClassNotFoundException ;
     public List<ItemDTO> setItemName() throws SQLException,ClassNotFoundException;
-    public String generateOrderID() throws SQLException, ClassNotFoundException ;
+   // public String generateOrderID() throws SQLException, ClassNotFoundException ;
     public boolean placeOrder(PlaceOrder dto) throws SQLException,ClassNotFoundException;
     public ItemDTO findItem(String code)throws SQLException, ClassNotFoundException;
+
+  public   String generateNewOrderID() throws SQLException,ClassNotFoundException;
 }

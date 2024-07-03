@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO {
-    ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
-    OrderItemDAO orderItemDAO = (OrderItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER_ITEM);
+    //ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+    //OrderItemDAO orderItemDAO = (OrderItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER_ITEM);
 
     @Override
     public List<Order> getAll() throws SQLException, ClassNotFoundException {
@@ -24,7 +24,7 @@ public class OrderDAOImpl implements OrderDAO {
 
 
     public boolean add(Order entity) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO `Orders` (Order_id , Date, Price,Customer_id,User_id) VALUES (?,?,?,?,?)",entity.getOrder_id(), entity.getPrice(),entity.getCustomer_id(),entity.getDate(),entity.getUser_id());
+        return SQLUtil.execute("INSERT INTO Orders (Order_id , Date, Price,Customer_id,User_id) VALUES (?,?,?,?,?)",entity.getOrder_id(),entity.getDate(), entity.getPrice(),entity.getCustomer_id(),entity.getUser_id());
     }
 
     @Override
@@ -40,8 +40,21 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT Order_id FROM Orders ORDER BY Order_id DESC LIMIT 1;");
-        return rst.next() ? String.format("OID-%03d", (Integer.parseInt(rst.getString("Order_id").replace("OID-", "")) + 1)) : "OID-001";
+        if (rst.next()) {
+            String string = rst.getString(1);
+            String idNumber = string.replaceAll("\\D", ""); // Remove non-digit characters
+            int id = 0;
+            if (!idNumber.isEmpty()) {
+                id = Integer.parseInt(idNumber);
+            }
+            id++;
+            String ID = String.format("I%03d", id); // Format ID with leading zeros
+            return ID;
+        } else {
+            return "I001";
+        }
     }
+
 
 
     @Override

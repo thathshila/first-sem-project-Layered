@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class OrderItemTM {
-    private String Item_id;
-    private String Item_name;
+    private String ItemId;
+    private String ItemName;
     private int Quantity;
     private double Price;
     private double Total;
     private JFXButton btnRemove;
-
-
 }
