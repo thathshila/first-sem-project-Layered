@@ -21,6 +21,7 @@ import lk.ijse.plant.dao.Custom.CustomerDAO;
 import lk.ijse.plant.dao.Custom.ItemDAO;
 import lk.ijse.plant.dao.Custom.UserDAO;
 import lk.ijse.plant.dao.DAOFactory;
+import lk.ijse.plant.db.DBConnection;
 import lk.ijse.plant.dto.CustomerDTO;
 import lk.ijse.plant.dto.ItemDTO;
 import lk.ijse.plant.dto.OrderDTO;
@@ -28,15 +29,17 @@ import lk.ijse.plant.entity.Order;
 import lk.ijse.plant.entity.OrderItem;
 import lk.ijse.plant.entity.PlaceOrder;
 import lk.ijse.plant.view.OrderItemTM;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class PlaceOrderFormController {
 
@@ -321,6 +324,8 @@ public class PlaceOrderFormController {
                 obList.clear();
                 tblPlaceOrder.setItems(obList);
                 calculateNetTotal();
+                makeOrderBill();
+                generateNewOrderId();
 
 
             }else {
@@ -328,11 +333,22 @@ public class PlaceOrderFormController {
             }
         }catch (SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (JRException e) {
+            throw new RuntimeException(e);
         }
         clearFields();
     }
 
+    public void makeOrderBill() throws JRException, SQLException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/ORDERBILL.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
+        Map<String,Object> data = new HashMap<>();
+        data.put("OrderID",txtOrderId.getText());
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DBConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint, false);
+    }
     @FXML
     void txtItemNameOnAction(ActionEvent event) {
         String itemName = txtItemName.getText();

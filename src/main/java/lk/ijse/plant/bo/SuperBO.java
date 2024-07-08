@@ -1,4 +1,4 @@
 package lk.ijse.plant.bo;
 
-public interface SuperBO {
+public interface SuperBO {//loose coupling ///object create kara return karai
 }

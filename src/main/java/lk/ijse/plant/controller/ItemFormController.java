@@ -2,6 +2,8 @@ package lk.ijse.plant.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ import lk.ijse.plant.bo.Custom.ItemBO;
 import lk.ijse.plant.dao.Custom.ItemDAO;
 import lk.ijse.plant.dao.DAOFactory;
 import lk.ijse.plant.dto.ItemDTO;
+import lk.ijse.plant.view.CustomerTM;
 import lk.ijse.plant.view.ItemTM;
 import lk.ijse.plant.util.Regex;
 import lombok.SneakyThrows;
@@ -29,6 +32,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class ItemFormController implements Initializable {
     public AnchorPane rootNode;
@@ -92,7 +96,6 @@ public class ItemFormController implements Initializable {
     ObservableList<ItemTM> observableList;
 
     ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
-    ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
 
     @SneakyThrows
     @Override
@@ -101,6 +104,7 @@ public class ItemFormController implements Initializable {
         getAll();
         generateNextItemID();
         setDate();
+        searchFilter();
     }
 
     private void setDate() {
@@ -256,5 +260,28 @@ public class ItemFormController implements Initializable {
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
         return itemBO.existItem(code);
+    }
+
+    private void searchFilter() {
+        FilteredList<ItemTM> filterData = new FilteredList<>(observableList, e -> true);
+        txtItemName.setOnKeyPressed(e -> {
+            txtItemName.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+                filterData.setPredicate((Predicate<? super ItemTM>) item -> {
+                    if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                        return true;
+                    }
+                    String searchKeyword = newValue.toLowerCase();
+                    if (item.getItem_id().toLowerCase().indexOf(searchKeyword) > -1){
+                        return true;
+                    } else if (item.getDescription().toLowerCase().indexOf(searchKeyword) > -1) {
+                        return true;
+                    }
+                    return false;
+                });
+            }));
+            SortedList<ItemTM> buyer = new SortedList<>(filterData);
+            buyer.comparatorProperty().bind(tblItem.comparatorProperty());
+            tblItem.setItems(buyer);
+        });
     }
     }

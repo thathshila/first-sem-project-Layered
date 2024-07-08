@@ -5,7 +5,7 @@ import lk.ijse.plant.dto.CustomerDTO;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CustomerBO extends SuperBO {
+public interface CustomerBO extends SuperBO {//loose coupling hama interface ekakama / BO hadanne controllers walata witharai
     public List<CustomerDTO> getAllCustomer() throws SQLException, ClassNotFoundException;
 
     public boolean addCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException;

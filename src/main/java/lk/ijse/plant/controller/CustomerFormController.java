@@ -37,7 +37,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Predicate;
 
-public class CustomerFormController implements Initializable {
+public class CustomerFormController implements Initializable {//dependancy injection and property injection and less boiler plate code
 
     public AnchorPane rootNode;
 

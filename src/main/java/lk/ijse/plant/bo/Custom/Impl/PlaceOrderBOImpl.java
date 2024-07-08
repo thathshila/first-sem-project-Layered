@@ -26,7 +26,6 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
     CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
 
 
-
     @Override
     public CustomerDTO searchCustomer(String nic) throws SQLException, ClassNotFoundException {
         Customer customer = customerDAO.search(nic);
@@ -40,29 +39,8 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
     }
 
     @Override
-    public boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        return itemDAO.exist(code);
-    }
-
-    @Override
-    public boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        return customerDAO.exist(id);
-    }
-
-
-    @Override
-    public List<ItemDTO> setItemName() throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-   /* @Override
-    public String generateOrderID() throws SQLException, ClassNotFoundException {
-        return orderDAO.generateNewID();
-    }*/
-
-    @Override
     public boolean placeOrder(PlaceOrder placeOrder) throws SQLException, ClassNotFoundException {
-       // return orderDAO.makeOrder(placeOrder);
+
         Connection connection = DBConnection.getInstance().getConnection();
         connection.setAutoCommit(false);
 
@@ -111,19 +89,6 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
         return false;
     }
 
-
-    @Override
-    public ItemDTO findItem(String code) throws SQLException, ClassNotFoundException {
-        try {
-            Item i = itemDAO.search(code);
-            return new ItemDTO(i.getItem_id(),i.getDescription(),i.getQuantity(),i.getPrice(),i.getItem_name(),i.getDate());
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to find the Item " + code, e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     @Override
     public String generateNewOrderID() throws SQLException,ClassNotFoundException{

@@ -4,11 +4,11 @@ import lk.ijse.plant.bo.Custom.Impl.PlaceOrderBOImpl;
 import lk.ijse.plant.dao.Custom.Impl.*;
 
 
-public class DAOFactory {
+public class DAOFactory {// object creation
 
     private static DAOFactory daoFactory;
 
-    private DAOFactory(){}
+    private DAOFactory(){}// constructor private nis nawatha nawatha object create krarann beeeee
 
     public static DAOFactory getDaoFactory(){
         return (daoFactory == null) ? daoFactory = new DAOFactory() : daoFactory;

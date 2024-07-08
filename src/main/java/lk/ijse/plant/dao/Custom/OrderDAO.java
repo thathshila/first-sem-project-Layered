@@ -5,5 +5,4 @@ import lk.ijse.plant.entity.Order;
 import lk.ijse.plant.entity.PlaceOrder;
 
 public interface OrderDAO extends crudDAO<Order> {
-   // boolean makeOrder(PlaceOrder placeOrder);
 }
