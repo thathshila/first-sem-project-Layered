@@ -48,10 +48,6 @@ public class UserRegisterFormController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // getAll();
-        //setCellValueFactory();
-        //  setPasswordDisable();
-        //  searchFilter();
         generateNextUserId();
         setDate();
     }
@@ -85,10 +81,10 @@ public class UserRegisterFormController implements Initializable {
     }
 
     public void btnRegisterNowOnAction(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
-      /*  if (!isValidated()){
+        if (!isValidated()){
             new Alert(Alert.AlertType.WARNING,"Please Check TextFields !").show();
             return;
-        }*/
+        }
         String User_id = txtUserId.getText();
         String User_name = txtUserName.getText();
         Date date = Date.valueOf(txtDate.getText());

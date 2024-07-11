@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.plant.db.DBConnection;
 
@@ -21,6 +22,10 @@ public class DashboardFormController implements Initializable {
         @FXML
         public Label lblCustomerCount;
 
+         @FXML
+         public Label lblItemCount;
+
+         private int itemCount;
         private int customerCount;
 
         @FXML
@@ -56,8 +61,19 @@ public class DashboardFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
             setEmployeeCount(employeeCount);
+
+            try {
+                itemCount = getItemCount();
+
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            }
+            setItemCount(itemCount);
         }
 
+    private void setItemCount(int itemCount){
+        lblItemCount.setText(String.valueOf(itemCount));
+    }
 
         private void setEmployeeCount(int employeeCount){
             lblEmployeeCount.setText(String.valueOf(employeeCount));
@@ -104,6 +120,19 @@ public class DashboardFormController implements Initializable {
             }
             return 0;
         }
+
+    private int getItemCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS item_count FROM Items";
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("item_count");
+        }
+        return 0;
+    }
     }
 
 

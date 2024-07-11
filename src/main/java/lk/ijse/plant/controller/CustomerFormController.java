@@ -54,9 +54,6 @@ public class CustomerFormController implements Initializable {//dependancy injec
     private JFXButton btnSAVE;
 
     @FXML
-    private JFXButton btnSEARCH;
-
-    @FXML
     private JFXButton btnUPDATE;
 
     @FXML
@@ -82,6 +79,9 @@ public class CustomerFormController implements Initializable {//dependancy injec
 
     @FXML
     private TableView<CustomerTM> tblCustomer;
+
+    @FXML
+    private TextField txtSearch;
 
     @FXML
     private TextField txtAddress;
@@ -152,7 +152,6 @@ public class CustomerFormController implements Initializable {//dependancy injec
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
         Map<String,Object> data = new HashMap<>();
-        // data.put("CustomerID",txtCustomerId.getText());
 
         JasperPrint jasperPrint =
                 JasperFillManager.fillReport(jasperReport, data, DBConnection.getInstance().getConnection());
@@ -175,8 +174,8 @@ public class CustomerFormController implements Initializable {//dependancy injec
 
         private void searchFilter() {
             FilteredList<CustomerTM> filterData = new FilteredList<>(observableList, e -> true);
-            txtNICNumber.setOnKeyPressed(e -> {
-                txtNICNumber.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+            txtSearch.setOnKeyPressed(e -> {
+                txtSearch.textProperty().addListener(((observableValue, oldValue, newValue) -> {
                     filterData.setPredicate((Predicate<? super CustomerTM>) customer -> {
                         if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
                             return true;
@@ -223,13 +222,10 @@ public class CustomerFormController implements Initializable {//dependancy injec
 
     @FXML
     void btnSAVEOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-  /*  if(!isValidated()){
+    if(!isValidated()){
         new Alert(Alert.AlertType.ERROR,"Please Check TextFields!").show();
         return;
     }
-    String user = customerDAO.searchByName(lblUserName.getText());
-    lblUserId.setText(user);*/
-
     String id = txtCustomerId.getText();
     String name = txtCustomerName.getText();
     int contact = Integer.parseInt(txtContact.getText());
@@ -245,11 +241,6 @@ public class CustomerFormController implements Initializable {//dependancy injec
     clearFields();
     generateNextCustomerID();
     getAll();
-    }
-
-    @FXML
-    void btnSEARCHOnAction(ActionEvent event) {
-
     }
 
 
@@ -291,7 +282,6 @@ public class CustomerFormController implements Initializable {//dependancy injec
     txtNICNumber.setText(colNIC.getCellData(index).toString());
     txtDate.setText(colDate.getCellData(index).toString());
 
-  //  lblError.setVisible(false);
     }
     public void txtCustomerNameOnAction(ActionEvent actionEvent) {
         txtContact.requestFocus();

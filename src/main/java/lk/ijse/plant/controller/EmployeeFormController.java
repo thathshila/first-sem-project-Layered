@@ -158,6 +158,8 @@ public class EmployeeFormController implements Initializable {
                         return true;
                     }else if (employee.getWorking_hours().toLowerCase().indexOf(searchKeyword) > -1){
                         return true;
+                  /*  } else if (employee.getContact().toLowerCase().indexOf(searchKeyword) > -1) {
+                        return true;*/
                     }else if(employee.getUser_id().toLowerCase().indexOf(searchKeyword) > -1){
                         return true;
                     }
@@ -177,12 +179,10 @@ public class EmployeeFormController implements Initializable {
     }
     public void btnSAVEOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
-       /* if (!isValidated()){
+        if (!isValidated()){
             new Alert(Alert.AlertType.ERROR,"Please Check TextFields !").show();
             return;
         }
-        String user = employeeDAO.searchByName(lblUserName.getText());
-        lblUserID.setText(user);*/
 
         String id = txtEmployeeId.getText();
         String name = txtEmployeeName.getText();
@@ -246,13 +246,11 @@ public class EmployeeFormController implements Initializable {
     }
     @FXML
     void btnUPDATEOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-       /* if (!isValidated()){
+        if (!isValidated()){
             new Alert(Alert.AlertType.ERROR,"Please Check TextFields !").show();
             return;
         }
 
-        String user = employeeDAO.searchByName(lblUserName.getText());
-        lblUserID.setText(user);*/
 
         String id = txtEmployeeId.getText();
         String name = txtEmployeeName.getText();

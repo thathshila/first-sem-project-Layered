@@ -1,5 +1,7 @@
 package lk.ijse.plant.util;
 
+import javafx.scene.paint.Paint;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,41 +42,30 @@ public class Regex {
 
         Pattern pattern = Pattern.compile(filed);
 
-        if (text != null){
-            if (text.trim().isEmpty()){
+        if (text != null) {
+            if (text.trim().isEmpty()) {
                 return false;
             }
-        }else {
+        } else {
             return false;
         }
 
         Matcher matcher = pattern.matcher(text);
 
-        if (matcher.matches()){
+        if (matcher.matches()) {
             return true;
         }
         return false;
     }
 
-    public static boolean setTextColor(TextField location, javafx.scene.control.TextField textField){
-        if (Regex.isTextFieldValid(location, textField.getText())){
-
-            textField.setStyle(" -fx-text-box-border: #34d734;\n" +
-                    "    -fx-focus-color: #12dc12;\n" +
-                    "    -fx-faint-focus-color: rgba(246,68,68,0);;");
+    public static boolean setTextColor(TextField location, javafx.scene.control.TextField textField) {
+        if (Regex.isTextFieldValid(location, textField.getText())) {
+            textField.setStyle("-fx-text-inner-color: blue;");
 
             return true;
-        }else {
-            textField.setStyle(" -fx-text-box-border: #f10000;\n" +
-                    "    -fx-focus-color: #ff0000;\n" +
-                    "    -fx-faint-focus-color: rgba(246,68,68,0);;");
+        } else {
+            textField.setStyle("-fx-text-inner-color: red;");
             return false;
         }
     }
 }
-
-
- /*textField.setStyle(" -fx-border-color: Green");
-                return true;
-                        }else {
-                        textField.setStyle(" -fx-border-color: Red");*/

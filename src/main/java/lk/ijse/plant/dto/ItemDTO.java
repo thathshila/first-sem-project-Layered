@@ -4,9 +4,6 @@ import lombok.*;
 
 import java.sql.Date;
 @AllArgsConstructor
-@ToString
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 public class ItemDTO {
@@ -17,12 +14,8 @@ public class ItemDTO {
     private String Description;
     private Date Date;
 
-    public Object getQtyOnHand() {
+  public Object getQtyOnHand() {
         return Quantity;
-    }
-
-    public void setQtyOnHand(int i) {
-        this.Quantity = i;
     }
 }
 

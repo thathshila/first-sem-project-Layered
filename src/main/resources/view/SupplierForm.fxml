@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.lang.String?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -16,26 +15,26 @@
 
 <AnchorPane fx:id="rootNode" prefHeight="836.0" prefWidth="1513.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.plant.controller.SupplierFormController">
     <children>
-        <Text layoutX="782.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MANAGE SUPPLIERS">
+        <Text layoutX="653.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MANAGE SUPPLIERS">
             <font>
-                <Font name="DejaVu Sans Bold" size="24.0" />
+                <Font name="Gurajada" size="34.0" />
             </font>
         </Text>
-        <Text layoutX="530.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SupplierId">
+        <Text layoutX="89.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SupplierId">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
         </Text>
-        <TextField fx:id="txtSupplierName" layoutX="996.0" layoutY="166.0" onKeyReleased="#txtSupplierNameOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <Text layoutX="1006.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SupplierName">
+        <TextField fx:id="txtSupplierName" layoutX="79.0" layoutY="209.0" onKeyReleased="#txtSupplierNameOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <Text layoutX="91.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SupplierName">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
         </Text>
-        <TextField fx:id="txtContact" layoutX="522.0" layoutY="261.0" onKeyReleased="#txtContactOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <Text layoutX="532.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
+        <TextField fx:id="txtContact" layoutX="79.0" layoutY="292.0" onKeyReleased="#txtContactOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <Text layoutX="93.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
             <fill>
                 <LinearGradient endX="1.0" endY="1.0" startX="0.5190476190476191">
@@ -59,32 +58,32 @@
                 </LinearGradient>
             </fill>
         </Text>
-        <TextField fx:id="txtAddress" layoutX="996.0" layoutY="261.0" onKeyReleased="#txtAddressOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <Text layoutX="1010.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+        <TextField fx:id="txtAddress" layoutX="79.0" layoutY="359.0" onKeyReleased="#txtAddressOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <Text layoutX="91.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
         </Text>
-        <TextField fx:id="txtProductName" layoutX="522.0" layoutY="411.0" onKeyReleased="#txtProductNameOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <Text layoutX="526.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ProductName">
+        <TextField fx:id="txtProductName" layoutX="75.0" layoutY="639.0" onKeyReleased="#txtProductNameOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <Text layoutX="97.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ProductName">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
         </Text>
-        <TextField fx:id="txtQuantity" layoutX="522.0" layoutY="335.0" onKeyReleased="#txtQuantityOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <Text layoutX="528.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
+        <TextField fx:id="txtQuantity" layoutX="79.0" layoutY="569.0" onKeyReleased="#txtQuantityOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <Text layoutX="93.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
         </Text>
-        <TextField fx:id="txtUnitPrice" layoutX="522.0" layoutY="498.0" onKeyReleased="#txtUnitPriceOnKeyRelaesed" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <Text layoutX="526.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UnitPrice">
+        <TextField fx:id="txtUnitPrice" layoutX="75.0" layoutY="703.0" onKeyReleased="#txtUnitPriceOnKeyRelaesed" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <Text layoutX="87.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UnitPrice">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
         </Text>
-        <TextField fx:id="txtNIC" layoutX="996.0" layoutY="373.0" onKeyReleased="#txtNICOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <TableView fx:id="tblSupplier" layoutX="522.0" layoutY="569.0" onMouseClicked="#tblSupplierOnMouseClicked" prefHeight="214.0" prefWidth="824.0">
+        <TextField fx:id="txtNIC" layoutX="79.0" layoutY="425.0" onKeyReleased="#txtNICOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <TableView fx:id="tblSupplier" layoutX="403.0" layoutY="156.0" onMouseClicked="#tblSupplierOnMouseClicked" prefHeight="559.0" prefWidth="827.0">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="64.0" text="Id" />
                 <TableColumn fx:id="colName" prefWidth="62.0" text="Name" />
@@ -102,77 +101,49 @@
                 <Image url="@../asserts/logo.jpg" />
             </image>
         </ImageView>
-        <TextField fx:id="txtSupplierId" layoutX="522.0" layoutY="166.0" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <Text layoutX="1010.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
+        <TextField fx:id="txtSupplierId" layoutX="72.0" layoutY="133.0" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <Text layoutX="98.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
         </Text>
-        <TextField fx:id="txtDate" layoutX="1000.0" layoutY="498.0" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-        <Text layoutX="1016.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+        <TextField fx:id="txtDate" layoutX="79.0" layoutY="499.0" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+        <Text layoutX="93.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Gurajada" size="20.0" />
             </font>
         </Text>
-        <JFXButton fx:id="btnShowDetails" layoutX="1384.0" layoutY="771.0" onAction="#btnShowDetailsOnAction" text="show details" />
-        <JFXButton fx:id="btnSAVE" layoutX="1374.0" layoutY="202.0" onAction="#btnSAVEOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="SAVE">
+        <JFXButton fx:id="btnShowDetails" layoutX="1038.0" layoutY="798.0" onAction="#btnShowDetailsOnAction" text="show details" />
+        <JFXButton fx:id="btnSAVE" layoutX="1249.0" layoutY="323.0" onAction="#btnSAVEOnAction" prefHeight="45.0" prefWidth="244.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="SAVE">
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="FreeSerif Bold" size="20.0" />
             </font>
-            <styleClass>
-                <String fx:value="logout" />
-                <String fx:value="boader" />
-            </styleClass>
         </JFXButton>
-        <JFXButton fx:id="btnBACK" layoutX="1375.0" layoutY="464.0" onAction="#btnBACKOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="BACK">
+        <JFXButton fx:id="btnBACK" layoutX="1250.0" layoutY="547.0" onAction="#btnBACKOnAction" prefHeight="45.0" prefWidth="244.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="BACK">
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="FreeSerif Bold" size="20.0" />
             </font>
-            <styleClass>
-                <String fx:value="logout" />
-                <String fx:value="boader" />
-            </styleClass>
         </JFXButton>
-        <JFXButton fx:id="btnCLEAR" layoutX="1374.0" layoutY="256.0" onAction="#btnCLEAROnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="CLEAR">
+        <JFXButton fx:id="btnCLEAR" layoutX="1249.0" layoutY="377.0" onAction="#btnCLEAROnAction" prefHeight="45.0" prefWidth="244.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="CLEAR">
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="FreeSerif Bold" size="20.0" />
             </font>
-            <styleClass>
-                <String fx:value="logout" />
-                <String fx:value="boader" />
-            </styleClass>
         </JFXButton>
-        <JFXButton fx:id="btnSEARCH" layoutX="1373.0" layoutY="413.0" onAction="#btnSEARCHOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="SEARCH">
+        <JFXButton fx:id="btnDELETE" layoutX="1249.0" layoutY="430.0" onAction="#btnDELETEOnAction" prefHeight="45.0" prefWidth="244.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="DELETE">
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="FreeSerif Bold" size="20.0" />
             </font>
-            <styleClass>
-                <String fx:value="logout" />
-                <String fx:value="boader" />
-            </styleClass>
         </JFXButton>
-        <JFXButton fx:id="btnDELETE" layoutX="1374.0" layoutY="309.0" onAction="#btnDELETEOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="DELETE">
+        <JFXButton fx:id="btnUPDATE" layoutX="1250.0" layoutY="489.0" onAction="#btnUPDATEOnAction" prefHeight="45.0" prefWidth="244.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="UPDATE">
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="FreeSerif Bold" size="20.0" />
             </font>
-            <styleClass>
-                <String fx:value="logout" />
-                <String fx:value="boader" />
-            </styleClass>
         </JFXButton>
-        <JFXButton fx:id="btnUPDATE" layoutX="1374.0" layoutY="361.0" onAction="#btnUPDATEOnAction" prefHeight="45.0" prefWidth="119.0" style="-fx-background-radius: 20;" stylesheets="@../css/DashFile.css" text="UPDATE">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-            <styleClass>
-                <String fx:value="logout" />
-                <String fx:value="boader" />
-            </styleClass>
-        </JFXButton>
-        <ImageView fitHeight="836.0" fitWidth="519.0">
-            <image>
-                <Image url="@../asserts/employee.jpg" />
-            </image>
-        </ImageView>
+      <TextField fx:id="txtSearch" layoutX="1245.0" layoutY="258.0" prefHeight="45.0" prefWidth="252.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="1430.0" layoutY="262.0">
+         <image>
+            <Image url="@../asserts/icons8-search-50.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

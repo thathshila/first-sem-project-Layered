@@ -1,127 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="848.0" prefWidth="1449.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.plant.controller.CustomerFormController">
    <children>
-      <Text layoutX="824.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" MANAGE  CUSTOMERS" wrappingWidth="334.0">
+      <Text layoutX="510.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" MANAGE  CUSTOMERS" wrappingWidth="334.0">
          <font>
-            <Font name="DejaVu Serif Bold" size="24.0" />
+            <Font name="FreeSerif Bold" size="26.0" />
          </font>
       </Text>
-      <JFXButton fx:id="btnSAVE" layoutX="1268.0" layoutY="168.0" onAction="#btnSAVEOnAction" prefHeight="52.0" prefWidth="162.0" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../Desktop/AMMA/plant/src/main/resources/css/DashFile.css" text="SAVE">
-         <styleClass>
-            <String fx:value="logout1" />
-            <String fx:value="logout" />
-            <String fx:value="boader" />
-         </styleClass>
+      <JFXButton fx:id="btnSAVE" layoutX="1046.0" layoutY="285.0" onAction="#btnSAVEOnAction" prefHeight="52.0" prefWidth="362.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="SAVE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
-            <Font name="KacstFarsi" size="15.0" />
+            <Font name="FreeSerif Bold" size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnDELETE" layoutX="1268.0" layoutY="225.0" onAction="#btnDELETEOnAction" prefHeight="52.0" prefWidth="162.0" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../Desktop/AMMA/plant/src/main/resources/css/DashFile.css" text="DELETE">
+      <JFXButton fx:id="btnDELETE" layoutX="1046.0" layoutY="359.0" onAction="#btnDELETEOnAction" prefHeight="52.0" prefWidth="362.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="DELETE">
          <font>
-            <Font name="Pagul" size="15.0" />
+            <Font name="FreeSerif Bold" size="20.0" />
          </font>
-         <styleClass>
-            <String fx:value="logout" />
-            <String fx:value="boader" />
-         </styleClass>
       </JFXButton>
-      <JFXButton fx:id="btnUPDATE" layoutX="1264.0" layoutY="280.0" onAction="#btnUPDATEOnAction" prefHeight="44.0" prefWidth="162.0" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../Desktop/AMMA/plant/src/main/resources/css/DashFile.css" text="UPDATE">
+      <JFXButton fx:id="btnUPDATE" layoutX="1053.0" layoutY="431.0" onAction="#btnUPDATEOnAction" prefHeight="52.0" prefWidth="362.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="UPDATE">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="FreeSerif Bold" size="20.0" />
          </font>
-         <styleClass>
-            <String fx:value="logout" />
-            <String fx:value="boader" />
-         </styleClass>
       </JFXButton>
-      <JFXButton fx:id="btnSEARCH" layoutX="1263.0" layoutY="326.0" onAction="#btnSEARCHOnAction" prefHeight="52.0" prefWidth="162.0" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../Desktop/AMMA/plant/src/main/resources/css/DashFile.css" text="SEARCH">
+      <JFXButton fx:id="btnBACK" layoutX="1054.0" layoutY="515.0" onAction="#btnBACKOnAction" prefHeight="52.0" prefWidth="362.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="BACK">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="FreeSerif Bold" size="20.0" />
          </font>
-         <styleClass>
-            <String fx:value="logout" />
-            <String fx:value="boader" />
-         </styleClass>
       </JFXButton>
-      <JFXButton fx:id="btnBACK" layoutX="1260.0" layoutY="380.0" onAction="#btnBACKOnAction" prefHeight="52.0" prefWidth="162.0" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../Desktop/AMMA/plant/src/main/resources/css/DashFile.css" text="BACK">
+      <JFXButton fx:id="btnCLEAR" layoutX="1054.0" layoutY="588.0" onAction="#btnCLEAROnAction" prefHeight="52.0" prefWidth="362.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="CLEAR">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="FreeSerif Bold" size="20.0" />
          </font>
-         <styleClass>
-            <String fx:value="logout" />
-            <String fx:value="boader" />
-         </styleClass>
       </JFXButton>
-      <JFXButton fx:id="btnCLEAR" layoutX="1263.0" layoutY="435.0" onAction="#btnCLEAROnAction" prefHeight="52.0" prefWidth="162.0" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../Desktop/AMMA/plant/src/main/resources/css/DashFile.css" text="CLEAR">
+      <JFXButton fx:id="btnbill" layoutX="1054.0" layoutY="660.0" onAction="#btnBillOnAction" prefHeight="52.0" prefWidth="362.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" text="DETAILS">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="FreeSerif Bold" size="20.0" />
          </font>
-         <styleClass>
-            <String fx:value="logout" />
-            <String fx:value="boader" />
-         </styleClass>
       </JFXButton>
-      <JFXButton fx:id="btnbill" layoutX="1264.0" layoutY="490.0" onAction="#btnBillOnAction" prefHeight="52.0" prefWidth="162.0" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../Desktop/AMMA/plant/src/main/resources/css/DashFile.css" text="DETAILS">
+      <TextField fx:id="txtCustomerId" layoutX="142.0" layoutY="164.0" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <TextField fx:id="txtCustomerName" layoutX="577.0" layoutY="164.0" onAction="#txtCustomerNameOnAction" onKeyReleased="#txtCustomerNameOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <Text layoutX="152.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CustomerId">
          <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-         <styleClass>
-            <String fx:value="logout" />
-            <String fx:value="boader" />
-         </styleClass>
-      </JFXButton>
-      <TextField fx:id="txtCustomerId" layoutX="572.0" layoutY="164.0" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-      <TextField fx:id="txtCustomerName" layoutX="900.0" layoutY="236.0" onAction="#txtCustomerNameOnAction" onKeyReleased="#txtCustomerNameOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-      <Text layoutX="582.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CustomerId">
-         <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="Gurajada" size="21.0" />
          </font>
       </Text>
-      <Text layoutX="917.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CustomerName">
+      <Text layoutX="577.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CustomerName">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="Gurajada" size="21.0" />
          </font>
       </Text>
-      <TextField fx:id="txtContact" layoutX="572.0" layoutY="428.0" onAction="#txtContactOnAction" onKeyReleased="#txtContactOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-      <Text layoutX="582.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
+      <TextField fx:id="txtContact" layoutX="142.0" layoutY="417.0" onAction="#txtContactOnAction" onKeyReleased="#txtContactOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <Text layoutX="160.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="Gurajada" size="21.0" />
          </font>
       </Text>
-      <TextField fx:id="txtNICNumber" layoutX="886.0" layoutY="368.0" onAction="#txtNICNumberOnAction" onKeyReleased="#txtNICNumberOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-      <Text layoutX="900.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC Number">
+      <TextField fx:id="txtNICNumber" layoutX="583.0" layoutY="287.0" onAction="#txtNICNumberOnAction" onKeyReleased="#txtNICNumberOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <Text layoutX="577.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC Number">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="Gurajada" size="21.0" />
          </font>
       </Text>
-      <TextField fx:id="txtDate" layoutX="572.0" layoutY="287.0" onKeyReleased="#txtDateOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-      <Text layoutX="582.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+      <TextField fx:id="txtDate" layoutX="142.0" layoutY="287.0" onKeyReleased="#txtDateOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <Text layoutX="152.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="Gurajada" size="21.0" />
          </font>
       </Text>
-      <TextField fx:id="txtAddress" layoutX="886.0" layoutY="524.0" onAction="#txtAddressOnAction" onKeyReleased="#txtAddressOnKeyReleased" prefHeight="30.0" prefWidth="314.0" style="-fx-background-color: abff4f;" />
-      <Text layoutX="900.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+      <TextField fx:id="txtAddress" layoutX="583.0" layoutY="420.0" onAction="#txtAddressOnAction" onKeyReleased="#txtAddressOnKeyReleased" prefHeight="30.0" prefWidth="314.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <Text layoutX="583.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="Gurajada" size="21.0" />
          </font>
       </Text>
-      <TableView fx:id="tblCustomer" layoutX="565.0" layoutY="595.0" onMouseClicked="#tblCustomerOnMouseClicked" prefHeight="231.0" prefWidth="852.0">
+      <TableView fx:id="tblCustomer" layoutX="142.0" layoutY="531.0" onMouseClicked="#tblCustomerOnMouseClicked" prefHeight="283.0" prefWidth="839.0">
          <columns>
             <TableColumn fx:id="colCustomerId" prefWidth="111.0" text="CustomerId" />
             <TableColumn fx:id="colName" prefWidth="127.0" text="Name" />
@@ -131,5 +97,11 @@
             <TableColumn fx:id="colDate" prefWidth="224.0" text="Date" />
          </columns>
       </TableView>
+      <TextField fx:id="txtSearch" layoutX="1050.0" layoutY="208.0" onKeyReleased="#txtCustomerNameOnKeyReleased" prefHeight="52.0" prefWidth="355.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="1339.0" layoutY="217.0">
+         <image>
+            <Image url="@../asserts/icons8-search-50.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

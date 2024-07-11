@@ -361,7 +361,6 @@ public class PlaceOrderFormController {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @FXML

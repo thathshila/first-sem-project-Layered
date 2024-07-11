@@ -93,6 +93,9 @@ public class ItemFormController implements Initializable {
     @FXML
     private TextField txtQuantity;
 
+    @FXML
+    private TextField txtSearch;
+
     ObservableList<ItemTM> observableList;
 
     ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
@@ -218,10 +221,10 @@ public class ItemFormController implements Initializable {
     }
 
     public void btnSAVEOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-      /*  if (!isValidated()){
+       if (!isValidated()){
             new Alert(Alert.AlertType.ERROR,"Please Check TextFields !").show();
             return;
-        }*/
+        }
         String id = txtItemId.getText();
         String name = txtItemName.getText();
         int quantity = Integer.parseInt(txtQuantity.getText());
@@ -258,14 +261,12 @@ public class ItemFormController implements Initializable {
             txtItemId.setText(nextId);
         }
 
-    private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        return itemBO.existItem(code);
-    }
+
 
     private void searchFilter() {
         FilteredList<ItemTM> filterData = new FilteredList<>(observableList, e -> true);
-        txtItemName.setOnKeyPressed(e -> {
-            txtItemName.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+        txtSearch.setOnKeyPressed(e -> {
+            txtSearch.textProperty().addListener(((observableValue, oldValue, newValue) -> {
                 filterData.setPredicate((Predicate<? super ItemTM>) item -> {
                     if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
                         return true;
@@ -275,6 +276,8 @@ public class ItemFormController implements Initializable {
                         return true;
                     } else if (item.getDescription().toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
+                    } else if (item.getItem_name().toLowerCase().indexOf(searchKeyword) > -1) {
+                        return  true;
                     }
                     return false;
                 });
