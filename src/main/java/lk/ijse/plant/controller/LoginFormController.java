@@ -22,7 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class LoginFormController implements Initializable {
+public class LoginFormController  {
     @FXML
     private Button btnLOGIN;
 
@@ -93,7 +93,7 @@ public class LoginFormController implements Initializable {
     }
     @FXML
     public void btnRegisterOnAction(ActionEvent event) throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/RegisterForm.fxml"));
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/UserRegisterForm.fxml"));
 
         Scene scene = new Scene(rootNode);
 
@@ -112,7 +112,7 @@ public class LoginFormController implements Initializable {
     }
 
     public void btnForgotpasswordOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/RegisterForm.fxml"));
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/UserRegisterForm.fxml"));
 
         Scene scene = new Scene(rootNode);
 
@@ -136,13 +136,8 @@ public class LoginFormController implements Initializable {
 
         return true;
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        txtUsername.setText("Ashi");
-        txtPassword.setText("asha123");
-    }
 }
+
 
 
 

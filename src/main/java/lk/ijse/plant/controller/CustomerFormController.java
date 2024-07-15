@@ -18,8 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.CustomerBO;
-import lk.ijse.plant.dao.Custom.CustomerDAO;
-import lk.ijse.plant.dao.DAOFactory;
 import lk.ijse.plant.db.DBConnection;
 import lk.ijse.plant.dto.CustomerDTO;
 import lk.ijse.plant.view.CustomerTM;
@@ -37,7 +35,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Predicate;
 
-public class CustomerFormController implements Initializable {//dependancy injection and property injection and less boiler plate code
+public class CustomerFormController implements Initializable {
 
     public AnchorPane rootNode;
 
@@ -102,7 +100,7 @@ public class CustomerFormController implements Initializable {//dependancy injec
     private TextField txtNICNumber;
 
     ObservableList<CustomerTM> observableList;
-    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);//CustomerBOImpl can access
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
 
     @Override
     @SneakyThrows

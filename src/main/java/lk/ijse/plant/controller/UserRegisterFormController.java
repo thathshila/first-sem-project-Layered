@@ -2,12 +2,15 @@ package lk.ijse.plant.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.UserBO;
 import lk.ijse.plant.util.Regex;
@@ -15,6 +18,7 @@ import lombok.SneakyThrows;
 import lk.ijse.plant.dto.UserDTO;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -27,6 +31,7 @@ public class UserRegisterFormController implements Initializable {
 
     @FXML
     private AnchorPane rootNode;
+
 
     @FXML
     private TextField txtDate;
@@ -77,7 +82,13 @@ public class UserRegisterFormController implements Initializable {
         return true;
     }
 
-    public void btnBackOnAction(ActionEvent actionEvent) {
+    public void btnBackOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
+        Stage stage = (Stage) rootNode.getScene().getWindow();
+
+        stage.setScene(new Scene(anchorPane));
+        stage.setTitle("Login Form");
+        stage.centerOnScreen();
     }
 
     public void btnRegisterNowOnAction(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {

@@ -1,14 +1,13 @@
 package lk.ijse.plant.dao;
 
-import lk.ijse.plant.bo.Custom.Impl.PlaceOrderBOImpl;
 import lk.ijse.plant.dao.Custom.Impl.*;
 
 
-public class DAOFactory {// object creation
+public class DAOFactory {
 
     private static DAOFactory daoFactory;
 
-    private DAOFactory(){}// constructor private nis nawatha nawatha object create krarann beeeee
+    private DAOFactory(){}
 
     public static DAOFactory getDaoFactory(){
         return (daoFactory == null) ? daoFactory = new DAOFactory() : daoFactory;
@@ -31,9 +30,9 @@ public class DAOFactory {// object creation
             case USER:
                 return new UserDAOImpl();
             case PLACE_ORDER:
-                return new OrderDAOImpl(); // This should correspond to PLACE_ORDER
+                return new OrderDAOImpl();
             case ORDER_ITEM:
-                return new OrderItemDAOImpl(); // This should be OrderItemDAOImpl
+                return new OrderItemDAOImpl();
             case QUERY_DAO:
                 return new QueryDAOImpl();
             default:

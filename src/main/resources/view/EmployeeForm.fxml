@@ -122,5 +122,11 @@
                 <Font name="FreeSerif Bold" size="20.0" />
             </font>
         </JFXButton>
+      <TextField fx:id="txtSearch" layoutX="1188.0" layoutY="195.0" onKeyReleased="#txtEmployeeNameOnKeyReleased" prefHeight="45.0" prefWidth="242.0" styleClass="textFieldRedius" stylesheets="@../css/DashFile.css" />
+      <ImageView fitHeight="33.0" fitWidth="32.0" layoutX="1371.0" layoutY="201.0">
+         <image>
+            <Image url="@../asserts/icons8-search-50.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

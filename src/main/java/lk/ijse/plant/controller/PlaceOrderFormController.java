@@ -135,6 +135,7 @@ public class PlaceOrderFormController {
     ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
 
     UserDAO userDAO = (UserDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.USER);
+
     public void initialize() throws SQLException, ClassNotFoundException {
         setCellValueFactory();
         generateNewOrderId();
@@ -326,7 +327,6 @@ public class PlaceOrderFormController {
                 calculateNetTotal();
                 makeOrderBill();
                 generateNewOrderId();
-
 
             }else {
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();

@@ -4,11 +4,11 @@ package lk.ijse.plant.bo;
 import lk.ijse.plant.bo.Custom.Impl.*;
 import lk.ijse.plant.dao.Custom.Impl.OrderDAOImpl;
 
-public class BOFactory { //object create
+public class BOFactory {
 
     private static BOFactory boFactory;
 
-    private BOFactory(){} //constructor private nis nawatha nawatha object create krarann beeeee
+    private BOFactory(){}
 
     public static BOFactory getBoFactory() {
         return (boFactory == null) ? boFactory = new BOFactory() : boFactory;

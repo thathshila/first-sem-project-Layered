@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO {
-    //ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
-    //OrderItemDAO orderItemDAO = (OrderItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER_ITEM);
 
     @Override
     public List<Order> getAll() throws SQLException, ClassNotFoundException {
@@ -42,7 +40,7 @@ public class OrderDAOImpl implements OrderDAO {
         ResultSet rst = SQLUtil.execute("SELECT Order_id FROM Orders ORDER BY Order_id DESC LIMIT 1;");
         if (rst.next()) {
             String string = rst.getString(1);
-            String idNumber = string.replaceAll("\\D", ""); // Remove non-digit characters
+            String idNumber = string.replaceAll("\\D", "");
             int id = 0;
             if (!idNumber.isEmpty()) {
                 id = Integer.parseInt(idNumber);
@@ -66,51 +64,4 @@ public class OrderDAOImpl implements OrderDAO {
     public Order search(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
-
-   /* @Override
-    public boolean makeOrder(PlaceOrder placeOrder) {
-        try {
-            boolean isOrderSaved = add(placeOrder.getOrder());
-            System.out.println("isOrderSaved = " + isOrderSaved);
-            if (isOrderSaved) {
-
-                boolean isQtyUpdated = false;
-
-                for (OrderItem entity : placeOrder.getOdList()) {
-                    isQtyUpdated = itemDAO.UpdateQty(entity);
-
-                }
-                System.out.println("isQtyUpdated = " + isQtyUpdated);
-
-
-                if (isQtyUpdated) {
-
-                    boolean isOrderDetailSaved = false;
-
-                    for (OrderItem entity : placeOrder.getOdList()) {
-                        isOrderDetailSaved = orderItemDAO.SaveItem(entity);
-                    }
-                    System.out.println("isOrderDetailSaved = " + isOrderDetailSaved);
-
-                    if (isOrderDetailSaved) {
-                        connection.commit();
-                        return true;
-                    } else {
-                        connection.rollback();
-                    }
-                } else {
-                    connection.rollback();
-                }
-            } else {
-                connection.rollback();
-            }
-
-        } catch (Exception e) {
-            connection.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            connection.setAutoCommit(true);
-        }
-        return false;
-    }*/
     }

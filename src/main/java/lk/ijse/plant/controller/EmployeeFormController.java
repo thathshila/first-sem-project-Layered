@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 import lk.ijse.plant.bo.BOFactory;
 import lk.ijse.plant.bo.Custom.EmployeeBO;
 
+import lk.ijse.plant.dao.Custom.UserDAO;
+import lk.ijse.plant.dao.DAOFactory;
 import lk.ijse.plant.dto.EmployeeDTO;
 import lk.ijse.plant.view.CustomerTM;
 import lk.ijse.plant.view.EmployeeTM;
@@ -98,6 +100,9 @@ public class EmployeeFormController implements Initializable {
     private ChoiceBox choiceAttendance;
 
     @FXML
+    private TextField txtSearch;
+
+    @FXML
     private TextField txtContact;
 
     @FXML
@@ -121,6 +126,7 @@ public class EmployeeFormController implements Initializable {
     ObservableList<EmployeeTM> observableList;
 
     EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.EMPLOYEE);
+    UserDAO userDAO = (UserDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.USER);
 
     @SneakyThrows
     @Override
@@ -130,15 +136,30 @@ public class EmployeeFormController implements Initializable {
         generateNextEmployeeID();
         setDate();
         searchFilter();
+        getUserId();
 
         ObservableList<String> attendanceType = FXCollections.observableArrayList("Present", "Absent");
         choiceAttendance.setItems(attendanceType);
     }
 
+    private void getUserId() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<String> userList = userDAO.getIds();
+            for (String id : userList) {
+                obList.add(id);
+            }
+            comUserId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     private void searchFilter() {
         FilteredList<EmployeeTM> filterData = new FilteredList<>(observableList, e -> true);
-        txtContact.setOnKeyPressed(e -> {
-            txtContact.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+        txtSearch.setOnKeyPressed(e -> {
+            txtSearch.textProperty().addListener(((observableValue, oldValue, newValue) -> {
                 filterData.setPredicate((Predicate<? super EmployeeTM>) employee -> {
                     if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
                         return true;
@@ -158,8 +179,6 @@ public class EmployeeFormController implements Initializable {
                         return true;
                     }else if (employee.getWorking_hours().toLowerCase().indexOf(searchKeyword) > -1){
                         return true;
-                  /*  } else if (employee.getContact().toLowerCase().indexOf(searchKeyword) > -1) {
-                        return true;*/
                     }else if(employee.getUser_id().toLowerCase().indexOf(searchKeyword) > -1){
                         return true;
                     }

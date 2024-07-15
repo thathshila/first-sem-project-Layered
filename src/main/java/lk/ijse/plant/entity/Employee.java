@@ -7,8 +7,6 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Setter
-@Getter
 public class Employee{
     private String Employee_id;
     private String Employee_name;
